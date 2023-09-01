@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin: 20px;
+}
+
+h1.company-name {
+    color: green;
+}
+
+.card img {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    max-height: 150px; 
+    margin: 0 auto; 
+}
+
+.card {
+    width: 260px; 
+    height: 400px;
+    overflow: hidden; 
+}

@@ -1,0 +1,133 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<Section>
+    <div class="slider">
+        @foreach (var image in Model.BannerGalleryImages)
+        {
+            <div class='slide-image'>
+                <img src="@image.ImageUrl" alt="@image.Title">
+            </div>
+        }
+    </div>
+</Section>
+<Section>
+<div class="grid-container margin-2">
+    <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-4 align-center-middle" data-equalizer data-equalize-on="large">
+        <div class="cell">
+            <div class="card" data-equalizer-watch>
+                <img src="@Model.LatestNews.NewsPictureURL" alt="Latest News Image">
+                <div class="card-section">
+                    <h4>Latest News</h4>
+                    <p>@(Model.LatestNews.NewsReport.Length > 100 ? Model.LatestNews.NewsReport.Substring(0, 100) + "..." : Model.LatestNews.NewsReport)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cell">
+            <div class="card" data-equalizer-watch>
+                <img src="@Model.NewProduct.ImageUrl" alt="Latest Product Image">
+                <div class="card-section">
+                    <h4>Latest Product</h4>
+                    <p>@(Model.NewProduct.Description.Length > 100 ? Model.NewProduct.Description.Substring(0, 100) + "..." : Model.NewProduct.Description)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cell">
+            <div class="card" data-equalizer-watch>
+                <img src="@Model.LatestFieldEvent.Location" alt="Latest Field Event Image">
+                <div class="card-section">
+                    <h4>Latest Field Event</h4>
+                    <p>@(Model.LatestFieldEvent.Description.Length > 100 ? Model.LatestFieldEvent.Description.Substring(0, 100) + "..." : Model.LatestFieldEvent.Description)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cell">
+            <div class="card" data-equalizer-watch>
+                <img src="@Model.LatestGalleryImage.ImageUrl" alt="Latest Gallery Image">
+                <div class="card-section">
+                    <h4>Latest Gallery Image</h4>
+                    <p>@(Model.LatestGalleryImage.Description.Length > 100 ? Model.LatestGalleryImage.Description.Substring(0, 100) + "..." : Model.LatestGalleryImage.Description)</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</Section>
+
+<div class="grid-container">
+    <div class="product-slider">
+        @foreach (var product in Model.SliderProducts)
+        {
+            <div class='slide-product'>
+                <img src="@product.ImageUrl" alt="@product.ProductName">
+                <div class="product-info">
+                    <h4>@product.ProductName</h4>
+                    <p>@(product.Description.Length > 100 ? product.Description.Substring(0, 100) + "..." : product.Description)</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.slider').slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true
+        });
+        $('.product-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            adaptiveHeight: true
+        });
+    });
+
+</script>
+
+<style>
+    
+    .slider {
+        width: 100%;
+        max-height:250px;
+        margin: 0 auto; 
+    }
+
+    .slide-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover; 
+    }
+
+    .slide-image img {
+        width:100%;
+        height:200px;
+    }
+
+    .product-slider .slide-product {
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+    }
+
+    
+
+</style>

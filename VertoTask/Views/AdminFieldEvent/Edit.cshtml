@@ -1,0 +1,61 @@
+﻿@model VertoTask.Models.FieldEvent
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="grid-x grid-margin-x">
+    <div class="cell large-8 medium-10 small-12">
+
+        <h2>Edit Field Event</h2>
+        @Html.ValidationSummary(true, "", new { @class = "callout alert" })
+
+        <form asp-action="Edit" asp-controller="AdminFieldEvent" method="post" enctype="multipart/form-data">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+
+                    
+                    <input type="hidden" asp-for="Id" />
+
+                    
+                    <div class="cell medium-12">
+                        <label>
+                            Event Name
+                            <input type="text" asp-for="EventName" />
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <label>
+                            Event Date
+                            <input type="date" asp-for="EventDate" />
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <label>
+                            Event Description
+                            <textarea asp-for="Description" rows="4"></textarea>
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <label>
+                            Image (If you want to change the current image)
+                            <input type="file" name="newImageFile" />
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <input type="submit" class="button success" value="Update" />
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

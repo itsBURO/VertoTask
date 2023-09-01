@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VertoTask.Models.GalleryImage>
+
+<h2>All Gallery Images</h2>
+
+<div class="grid-x grid-padding-x">
+    <div class="cell large-12">
+
+        <table class="hover foundation-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Taken By</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Banner Active Status</th>
+                    <th>Card Active Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var galleryImage in Model)
+                {
+                    <tr>
+                        <td>@galleryImage.Title</td>
+                        <td>@galleryImage.TakenBy</td>
+                        <td><img src="@galleryImage.ImageUrl" alt="@galleryImage.Title" style="max-width:100px; height:auto;" /></td>
+                        <td>@galleryImage.Description</td>
+                        <td>
+                            @if (galleryImage.IsActive)
+                            {
+                                <span class="label label-success">Active</span>
+                                <a href="@Url.Action("Deactivate", "AdminGalleryImage", new { id = galleryImage.Id })" class="button tiny warning">Deactivate</a>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">Inactive</span>
+                                <a href="@Url.Action("Activate", "AdminGalleryImage", new { id = galleryImage.Id })" class="button tiny success">Activate</a>
+                            }
+                        </td>
+                        <td>
+                            @if (galleryImage.IsActiveForLatestProduct)
+                            {
+                                <span class="label label-success">Active</span>
+                                <a href="@Url.Action("DeactivateForSingle", "AdminGalleryImage", new { id = galleryImage.Id })" class="button tiny">Deactivate</a>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">Inactive</span>
+                                <a href="@Url.Action("ActivateForSingle", "AdminGalleryImage", new { id = galleryImage.Id })" class="button tiny success">Activate</a>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@galleryImage.Id" class="button tiny">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@galleryImage.Id" class="button tiny alert">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="admin-button-container">
+        <a href="@Url.Action("Index", "Admin")" class="button primary">Go to Admin</a>
+    </div>
+</div>

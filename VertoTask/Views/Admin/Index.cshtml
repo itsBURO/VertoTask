@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<div class="grid-container margin-2">
+    <div class="callout primary text-center margin-2">
+        <h2>Admin Dashboard</h2>
+    </div>
+
+    <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-4 align-center-middle">
+        <!-- Product Card -->
+        <div class="cell">
+            <div class="card">
+                <div class="card-divider">
+                    Products
+                </div>
+                <div class="card-section">
+                    <a href="/AdminProduct/Index" class="button expanded">View Products</a>
+                    <a href="/AdminProduct/Create" class="button success expanded">Create Product</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cell">
+            <div class="card">
+                <div class="card-divider">
+                    Field Events
+                </div>
+                <div class="card-section">
+                    <a href="/AdminFieldEvent/Index" class="button expanded">View Field Events</a>
+                    <a href="/AdminFieldEvent/Create" class="button success expanded">Create Field Event</a>
+                </div>
+            </div>
+        </div>
+        <div class="cell medium">
+            <div class="card">
+                <div class="card-divider">
+                    News
+                </div>
+                <div class="card-section">
+                    <a href="/AdminNews/Index" class="button expanded">View All News</a>
+                    <a href="/AdminNews/Create" class="button success expanded">Create New Newst</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cell medium">
+            <div class="card">
+                <div class="card-divider">
+                    Gallery Images
+                </div>
+                <div class="card-section">
+                    <a href="/AdminGalleryImage/Index" class="button expanded">View All Gallery Images</a>
+                    <a href="/AdminGalleryImage/Create" class="button success expanded">Create Gallery Images</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

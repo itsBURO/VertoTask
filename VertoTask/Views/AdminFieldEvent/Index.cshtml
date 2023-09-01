@@ -1,0 +1,52 @@
+﻿@model IEnumerable<VertoTask.Models.FieldEvent>
+
+<h2>All Field Events</h2>
+
+<div class="grid-x grid-padding-x">
+    <div class="cell large-12">
+
+        <table class="hover foundation-table">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Event Date</th>
+                    <th>Event Image</th>
+                    <th>Event Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var fieldEventItem in Model)
+                {
+                    <tr>
+                        <td>@fieldEventItem.EventName</td>
+                        <td>@fieldEventItem.EventDate</td>
+                        <td><img src="@fieldEventItem.Location" alt="@fieldEventItem.Location" style="max-width:100px; height:auto;" /></td>
+                        <td>@fieldEventItem.Description</td>
+                        <td>
+                            @if (fieldEventItem.IsActive)
+                            {
+                                <span class="label label-success">Active</span>
+                                <a href="@Url.Action("Deactivate", "AdminFieldEvent", new { id = fieldEventItem.Id })" class="button tiny warning">Deactivate</a>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">Inactive</span>
+                                <a href="@Url.Action("Activate", "AdminFieldEvent", new { id = fieldEventItem.Id })" class="button tiny success">Activate</a>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@fieldEventItem.Id" class="button tiny">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@fieldEventItem.Id" class="button tiny alert">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="admin-button-container">
+        <a href="@Url.Action("Index", "Admin")" class="button primary">Go to Admin</a>
+    </div>
+</div>

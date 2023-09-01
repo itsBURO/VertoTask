@@ -1,0 +1,55 @@
+﻿@model VertoTask.Models.News
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="grid-x grid-margin-x">
+    <div class="cell large-8 medium-10 small-12">
+
+        <h2>Edit News</h2>
+        @Html.ValidationSummary(true, "", new { @class = "callout alert" })
+
+        <form asp-action="Edit" asp-controller="AdminNews" method="post" enctype="multipart/form-data">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="cell medium-12">
+                        <label>
+                            Heading
+                            <input type="text" asp-for="NewsHeading" />
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <label>
+                            Written By
+                            <input type="text" asp-for="NewsWrittenBy" />
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <label>
+                            Report
+                            <textarea asp-for="NewsReport" rows="4"></textarea>
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <label>
+                            Image (If you want to change the current image)
+                            <input type="file" name="newImageFile" />
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <input type="submit" class="button success" value="Update" />
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

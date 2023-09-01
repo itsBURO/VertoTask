@@ -1,0 +1,55 @@
+﻿@model VertoTask.Models.News
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="grid-x grid-margin-x">
+    <div class="cell large-8 medium-10 small-12">
+
+        <h2>Create News</h2>
+
+        <form asp-action="Create" asp-controller="AdminNews" method="post" enctype="multipart/form-data">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+
+                    <div class="cell medium-12">
+                        <label>
+                            Heading
+                            <input type="text" asp-for="NewsHeading" />
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <label>
+                            Written By
+                            <input type="text" asp-for="NewsWrittenBy" />
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <label>
+                            News Report
+                            <textarea asp-for="NewsReport" rows="4"></textarea>
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <label>
+                            Image
+                            <input type="file" name="imageFile" />
+                        </label>
+                    </div>
+
+                    <div class="cell medium-12">
+                        <input type="submit" class="button success" value="Create" />
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <div class="admin-button-container">
+            <a href="@Url.Action("Index", "Admin")" class="button primary">Go to Admin</a>
+        </div>
+    </div>
+    
+</div>

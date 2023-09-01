@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VertoTask.Models.News>
+
+<h2>All News</h2>
+
+<div class="grid-x grid-padding-x">
+    <div class="cell large-12">
+
+        <table class="hover foundation-table">
+            <thead>
+                <tr>
+                    <th>Heading</th>
+                    <th>Written By</th>
+                    <th>Image</th>
+                    <th>Card Active Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var newsItem in Model)
+                {
+                    <tr>
+                        <td>@newsItem.NewsHeading</td>
+                        <td>@newsItem.NewsWrittenBy</td>
+                        <td><img src="@newsItem.NewsPictureURL" alt="@newsItem.NewsHeading" style="max-width:100px; height:auto;" /></td>
+                        <td>
+                            @if (newsItem.IsActive)
+                            {
+                                <span class="label label-success">Active</span>
+                                <a href="@Url.Action("Deactivate", "AdminNews", new { id = newsItem.Id })" class="button tiny warning">Deactivate</a>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">Inactive</span>
+                                <a href="@Url.Action("Activate", "AdminNews", new { id = newsItem.Id })" class="button tiny success">Activate</a>
+                            }
+                        </td>
+                        
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@newsItem.Id" class="button tiny">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@newsItem.Id" class="button tiny alert">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="admin-button-container">
+        <a href="@Url.Action("Index", "Admin")" class="button primary">Go to Admin</a>
+    </div>
+</div>

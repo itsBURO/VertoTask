@@ -1,0 +1,70 @@
+﻿@model IEnumerable<VertoTask.Models.Product>
+
+<h2>All Products</h2>
+
+<div class="grid-x grid-padding-x">
+    <div class="cell large-12">
+
+        <table class="hover foundation-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Added On</th>
+                    <th>Image</th>
+                    <th>Display In Product Slider?</th>
+                    <th>Display in Product Card?</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@product.Type</td>
+                        <td>@product.Price.ToString("C2")</td> 
+                        <td>@product.Description</td>
+                        <td>@product.AddedOn.ToString("MM/dd/yyyy")</td> 
+                        <td><img src="@product.ImageUrl" alt="@product.ProductName" style="max-width:100px; height:auto;" /></td>
+                        <td>
+                            @if (product.IsForProductOfferSlider)
+                            {
+                                <span class="label label-success">Active</span>
+                                <a href="@Url.Action("DeactivateForOfferSlider", "AdminProduct", new { id = product.Id })" class="button tiny warning">Deactivate</a>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">Inactive</span>
+                                <a href="@Url.Action("ActivateForOfferSlider", "AdminProduct", new { id = product.Id })" class="button tiny success">Activate</a>
+                            }
+                        </td>
+                        <td>
+                            @if (product.IsForSingleProductDisplay)
+                            {
+                                <span class="label label-success">Active</span>
+                                <a href="@Url.Action("DeactivateForSingleProduct", "AdminProduct", new { id = product.Id })" class="button tiny warning">Deactivate</a>
+                            }
+                            else
+                            {
+                                <span class="label label-danger">Inactive</span>
+                                <a href="@Url.Action("ActivateForSingleProduct", "AdminProduct", new { id = product.Id })" class="button tiny success">Activate</a>
+                            }
+                        </td>
+                        
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@product.Id" class="button tiny">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@product.Id" class="button tiny alert">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="admin-button-container">
+        <a href="@Url.Action("Index", "Admin")" class="button primary">Go to Admin</a>
+    </div>
+</div>

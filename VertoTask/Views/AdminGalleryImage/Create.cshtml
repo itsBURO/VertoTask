@@ -1,0 +1,59 @@
+﻿@model VertoTask.Models.GalleryImage
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="grid-x grid-margin-x">
+    <div class="cell large-8 medium-10 small-12">
+
+        <h2>Add a New Gallery Image</h2>
+
+        <form asp-action="Create" asp-controller="AdminGalleryImage" method="post" enctype="multipart/form-data">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+
+                   
+                    <div class="cell medium-12">
+                        <label>
+                            Picture Title
+                            <input type="text" asp-for="Title" />
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <label>
+                            Taken By
+                            <input type="text" asp-for="TakenBy" />
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <label>
+                            Report
+                            <textarea asp-for="Description" rows="4"></textarea>
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <label>
+                            Image
+                            <input type="file" name="imageFile" />
+                        </label>
+                    </div>
+
+                    
+                    <div class="cell medium-12">
+                        <input type="submit" class="button success" value="Create" />
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <div class="admin-button-container">
+            <a href="@Url.Action("Index", "Admin")" class="button primary">Go to Admin</a>
+        </div>
+    </div>
+</div>
